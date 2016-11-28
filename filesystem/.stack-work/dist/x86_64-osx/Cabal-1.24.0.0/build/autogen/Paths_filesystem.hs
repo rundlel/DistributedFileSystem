@@ -29,11 +29,11 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "/Users/laurarundle/Desktop/distro/filesystem/.stack-work/install/x86_64-osx/lts-7.10/8.0.1/bin"
-libdir     = "/Users/laurarundle/Desktop/distro/filesystem/.stack-work/install/x86_64-osx/lts-7.10/8.0.1/lib/x86_64-osx-ghc-8.0.1/filesystem-0.1.0.0-JhPI6abRWqR2lwno0WayJr"
-datadir    = "/Users/laurarundle/Desktop/distro/filesystem/.stack-work/install/x86_64-osx/lts-7.10/8.0.1/share/x86_64-osx-ghc-8.0.1/filesystem-0.1.0.0"
-libexecdir = "/Users/laurarundle/Desktop/distro/filesystem/.stack-work/install/x86_64-osx/lts-7.10/8.0.1/libexec"
-sysconfdir = "/Users/laurarundle/Desktop/distro/filesystem/.stack-work/install/x86_64-osx/lts-7.10/8.0.1/etc"
+bindir     = "/Users/laurarundle/Desktop/distro/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/bin"
+libdir     = "/Users/laurarundle/Desktop/distro/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/lib/x86_64-osx-ghc-8.0.1/filesystem-0.1.0.0-G6WBP2CZ9XOJsd52Etdu8K"
+datadir    = "/Users/laurarundle/Desktop/distro/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/share/x86_64-osx-ghc-8.0.1/filesystem-0.1.0.0"
+libexecdir = "/Users/laurarundle/Desktop/distro/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/libexec"
+sysconfdir = "/Users/laurarundle/Desktop/distro/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/etc"
 
 getBinDir, getLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "filesystem_bindir") (\_ -> return bindir)

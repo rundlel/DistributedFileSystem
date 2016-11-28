@@ -91,7 +91,7 @@
   (major1) == 0 && (major2) <  28 || \
   (major1) == 0 && (major2) == 28 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "filesystem-0.1.0.0-JhPI6abRWqR2lwno0WayJr"
+#define CURRENT_COMPONENT_ID "filesystem-0.1.0.0-G6WBP2CZ9XOJsd52Etdu8K"
 
-#define CURRENT_PACKAGE_KEY "filesystem-0.1.0.0-JhPI6abRWqR2lwno0WayJr"
+#define CURRENT_PACKAGE_KEY "filesystem-0.1.0.0-G6WBP2CZ9XOJsd52Etdu8K"
 

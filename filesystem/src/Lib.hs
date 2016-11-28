@@ -1,6 +1,8 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators   #-}
+{-# LANGUAGE DeriveGeneric   #-}
+
 module Lib
     ( startApp
     ) where
@@ -10,16 +12,19 @@ import Data.Aeson.TH
 import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
+import Data.Char
+import Data.List
+import GHC.Generics
 
-data User = User
-  { userId        :: Int
-  , userFirstName :: String
-  , userLastName  :: String
-  } deriving (Eq, Show)
+data Message = Message
+	{ string :: String }
+	deriving(Generic)
 
-$(deriveJSON defaultOptions ''User)
+instance FromJSON Message
+instance ToJSON Message
 
-type API = "users" :> Get '[JSON] [User]
+type API = "message" :> Capture "input" String :> Get '[JSON] Message
+
 
 startApp :: IO ()
 startApp = run 8080 app
@@ -31,9 +36,11 @@ api :: Proxy API
 api = Proxy
 
 server :: Server API
-server = return users
+server = sendMessage
 
-users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
-        ]
+sendMessage :: Server API
+sendMessage = sendEchoMessage where
+	sendEchoMessage :: String -> Handler Message
+	sendEchoMessage m = return (Message (map toUpper m))
+
+
