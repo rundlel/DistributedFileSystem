@@ -2,6 +2,8 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators   #-}
 {-# LANGUAGE DeriveGeneric   #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ExtendedDefaultRules #-}
 
 module Lib
     ( startApp
@@ -16,6 +18,8 @@ import Network.Wai.Handler.Warp
 import Servant
 import GHC.Generics
 import System.IO
+import Database.MongoDB
+import Control.Monad.Trans (liftIO)
 
 data Message = Message
  	{ message :: String }

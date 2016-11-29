@@ -21,6 +21,8 @@ library
                      , servant-server
                      , wai
                      , warp
+                     , mongoDB
+                     , mtl
   default-language:    Haskell2010
 
 executable filesystem-exe

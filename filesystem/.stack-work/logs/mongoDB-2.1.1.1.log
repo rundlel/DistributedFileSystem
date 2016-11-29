@@ -1,0 +1,127 @@
+Configuring mongoDB-2.1.1.1...
+Warning: This package indirectly depends on multiple versions of the same
+package. This is highly likely to cause a compile failure.
+package parsec-3.1.11 requires text-1.2.2.1
+package hashable-1.2.4.0 requires text-1.2.2.1
+package nonce-1.0.2 requires text-1.2.2.1
+package mongoDB-2.1.1.1 requires text-1.2.2.1
+package bson-0.3.2.3 requires text-1.2.2.1
+Building mongoDB-2.1.1.1...
+Preprocessing library mongoDB-2.1.1.1...
+[1 of 8] Compiling Database.MongoDB.Transport ( Database/MongoDB/Transport.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/Database/MongoDB/Transport.o )
+[2 of 8] Compiling Database.MongoDB.Internal.Util ( Database/MongoDB/Internal/Util.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/Database/MongoDB/Internal/Util.o )
+
+Database/MongoDB/Internal/Util.hs:24:1: warning: [-Wdeprecations]
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+
+Database/MongoDB/Internal/Util.hs:68:1: warning: [-Wredundant-constraints]
+    • Redundant constraint: Functor m
+    • In the type signature for:
+           loop :: (Functor m, Monad m) => m (Maybe a) -> m [a]
+
+Database/MongoDB/Internal/Util.hs:72:34: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in transformers-0.5.2.0:Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Database/MongoDB/Internal/Util.hs:74:31: warning: [-Wdeprecations]
+    In the use of ‘strMsg’
+    (imported from Control.Monad.Error, but defined in transformers-0.5.2.0:Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+[3 of 8] Compiling Database.MongoDB.Internal.Protocol ( Database/MongoDB/Internal/Protocol.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/Database/MongoDB/Internal/Protocol.o )
+[4 of 8] Compiling Database.MongoDB.Query ( Database/MongoDB/Query.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/Database/MongoDB/Query.o )
+
+Database/MongoDB/Query.hs:71:1: warning: [-Wdeprecations]
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+
+Database/MongoDB/Query.hs:118:1: warning: [-Wredundant-constraints]
+    • Redundant constraint: MonadIO m
+    • In the type signature for:
+           access :: MonadIO m =>
+                     Pipe -> AccessMode -> Database -> Action m a -> m a
+
+Database/MongoDB/Query.hs:137:10: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in transformers-0.5.2.0:Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+Database/MongoDB/Query.hs:137:10: warning: [-Wdeprecations]
+    In the use of type constructor or class ‘Error’
+    (imported from Control.Monad.Error, but defined in transformers-0.5.2.0:Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+[5 of 8] Compiling Database.MongoDB.Connection ( Database/MongoDB/Connection.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/Database/MongoDB/Connection.o )
+
+Database/MongoDB/Connection.hs:42:1: warning: [-Wdeprecations]
+    Module ‘Control.Monad.Error’ is deprecated:
+      Use Control.Monad.Except instead
+[6 of 8] Compiling Database.MongoDB.Admin ( Database/MongoDB/Admin.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/Database/MongoDB/Admin.o )
+
+Database/MongoDB/Admin.hs:170:25: error:
+    • No instance for (hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class.Hashable
+                         Database)
+        arising from a use of ‘H.toList’
+      There are instances for similar types:
+        instance hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class.Hashable
+                   text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Internal.Text
+          -- Defined in ‘hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class’
+        instance hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class.Hashable
+                   text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Internal.Lazy.Text
+          -- Defined in ‘hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class’
+    • In the second argument of ‘(<$>)’, namely ‘H.toList dbIndexCache’
+      In a stmt of a 'do' block:
+        keys <- map fst <$> H.toList dbIndexCache
+      In the expression:
+        do { keys <- map fst <$> H.toList dbIndexCache;
+             mapM_ (H.delete dbIndexCache) keys }
+
+Database/MongoDB/Admin.hs:178:15: error:
+    • Could not deduce (hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class.Hashable
+                          Database)
+        arising from a use of ‘H.lookup’
+      from the context: MonadIO m
+        bound by the type signature for:
+                   fetchIndexCache :: MonadIO m => Action m IndexCache
+        at Database/MongoDB/Admin.hs:173:1-53
+      There are instances for similar types:
+        instance hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class.Hashable
+                   text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Internal.Text
+          -- Defined in ‘hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class’
+        instance hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class.Hashable
+                   text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Internal.Lazy.Text
+          -- Defined in ‘hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class’
+    • In a stmt of a 'do' block: mc <- H.lookup dbIndexCache db
+      In the second argument of ‘($)’, namely
+        ‘do { mc <- H.lookup dbIndexCache db;
+              maybe (newIdxCache db) return mc }’
+      In a stmt of a 'do' block:
+        liftIO
+        $ do { mc <- H.lookup dbIndexCache db;
+               maybe (newIdxCache db) return mc }
+
+Database/MongoDB/Admin.hs:183:9: error:
+    • Could not deduce (hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class.Hashable
+                          Database)
+        arising from a use of ‘H.insert’
+      from the context: MonadIO m
+        bound by the type signature for:
+                   fetchIndexCache :: MonadIO m => Action m IndexCache
+        at Database/MongoDB/Admin.hs:173:1-53
+      There are instances for similar types:
+        instance hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class.Hashable
+                   text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Internal.Text
+          -- Defined in ‘hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class’
+        instance hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class.Hashable
+                   text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Internal.Lazy.Text
+          -- Defined in ‘hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Class’
+    • In a stmt of a 'do' block: H.insert dbIndexCache db idx
+      In the expression:
+        do { idx <- newIORef Set.empty;
+             H.insert dbIndexCache db idx;
+             return idx }
+      In an equation for ‘newIdxCache’:
+          newIdxCache db
+            = do { idx <- newIORef Set.empty;
+                   H.insert dbIndexCache db idx;
+                   return idx }
