@@ -23,6 +23,7 @@ import Database.MongoDB (Action, Document, Value,
                                         master, project, rest, select, sort,
                                         (=:))
 import Control.Monad.Trans (liftIO)
+import Data.Bson.Generic
 
 data Message = Message
  	{ message :: String }
@@ -85,9 +86,11 @@ printDBFiles = startMongoDB $ find (select [] "Files") >>= rest
 
 postFile :: IO()
 postFile = do
-	withFile "text.txt" ReadMode (\handle -> do
-		contents <- hGetContents handle
-		startMongoDB $ insert "Files" contents)
+	handle <- openFile "text.txt" ReadMode
+	contents <- hGetContents handle
+	let textFileContent = words contents
+	startMongoDB $ insert "Files" $ toBSON textFileContent
+	hClose handle
 
 
 -- startApp :: IO ()
@@ -97,7 +100,9 @@ postFile = do
 	-- putStr contents
 	-- hClose handle
 
-
+--withFile "text.txt" ReadMode (\handle -> do
+--		contents <- hGetContents handle
+--		startMongoDB $ insert "Files" toBSON textFileContent)
 
 
 

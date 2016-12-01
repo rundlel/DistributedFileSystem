@@ -22,6 +22,8 @@ library
                      , wai
                      , warp
                      , mongoDB
+                     , bson-generic
+                     , bson
                      , mtl
   default-language:    Haskell2010
 
