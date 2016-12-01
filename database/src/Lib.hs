@@ -83,6 +83,13 @@ printDBCollecs = startMongoDB allCollections
 printDBFiles = startMongoDB $ find (select [] "Files") >>= rest
 
 
+postFile :: IO()
+postFile = do
+	withFile "text.txt" ReadMode (\handle -> do
+		contents <- hGetContents handle
+		startMongoDB $ insert "Files" contents)
+
+
 -- startApp :: IO ()
 -- startApp = do
 	-- handle <- openFile "text.txt" ReadMode
