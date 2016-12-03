@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/Users/laurarundle/Desktop/distro/authentication/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/bin"
-libdir     = "/Users/laurarundle/Desktop/distro/authentication/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/lib/x86_64-osx-ghc-8.0.1/authentication-0.1.0.0-8onSPAAbPIAQ2kKTAecla"
+libdir     = "/Users/laurarundle/Desktop/distro/authentication/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/lib/x86_64-osx-ghc-8.0.1/authentication-0.1.0.0-A9dpLDu4jGY6DhzSz2nwZ1"
 datadir    = "/Users/laurarundle/Desktop/distro/authentication/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/share/x86_64-osx-ghc-8.0.1/authentication-0.1.0.0"
 libexecdir = "/Users/laurarundle/Desktop/distro/authentication/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/libexec"
 sysconfdir = "/Users/laurarundle/Desktop/distro/authentication/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/etc"

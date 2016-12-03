@@ -22,6 +22,7 @@ library
                      , wai
                      , warp
                      , mtl
+                     , random
   default-language:    Haskell2010
 
 executable authentication-exe
