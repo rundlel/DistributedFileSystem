@@ -24,6 +24,7 @@ import Database.MongoDB (Action, Document, Value,
                                         (=:))
 import Control.Monad.Trans (liftIO)
 import Data.Bson.Generic
+import Control.Concurrent.MVar
 
 data Message = Message
  	{ message :: String }
@@ -37,6 +38,8 @@ data SendFile = SendFile
 instance FromJSON Message
 instance ToJSON Message
 
+deriving instance ToBSON
+deriving instance FromBSON
 
 type API = "message" :> Capture "in" String :> Get '[JSON] Message 
 		-- "file" :> Get 
