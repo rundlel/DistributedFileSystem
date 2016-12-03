@@ -38,74 +38,29 @@ type API = "users" :> Get '[JSON] [User]
 
 
 main = do 
-	let s = "sample string"
-	let x = map ord s
-	--print (s)
-	--print (x)
-	let z = map (+4) x
-	--print (z)
-	let y = map chr z
-	--print (y)
-	let a = map ord y
-	let b = map (+(-4)) a
-	--print (b)
-	let c = map chr b
-	--print (c)
-
-	--verify username/password with database
-	--give them an encrypted token
-	--token has metadata and a key
-	--metadata encrypted with key1
-	--key1 encrypted with key2
-
+	--ASCII Caesar Cipher
+	
 	handle <- openFile "text.txt" ReadMode
 	textFile <- hGetContents handle
 	--putStr textFile
 
-	something <- generateKey
-	let temp = encrypt textFile something
+	generatedKeyForEncryption <- generateKey
+	let temp = encrypt textFile generatedKeyForEncryption
 	print(temp)
-	
-	let varaib = temp!!0
 
-	let temporary = decrypt varaib something
-	print(temporary)
-
-	let fileToInt = map ord textFile
-	--print(fileToInt)
-
-	let encryptFile = map (+something) fileToInt
-	--print (encryptFile) 
-
-	let encryptedText = map chr encryptFile
-	--putStrLn(encryptedText)
-
-	-- let encryptedTextToInt = map ord encryptedText
-
-
-	let decryptText = map (+(-(something))) encryptFile
-	--print(decryptText)
-
-	let decryptedMessage = map chr decryptText
-	--putStrLn(decryptedMessage)
-
-
-	
-	print(something)
-
-encrypt :: String -> Int -> [String]
+encrypt :: String -> Int -> String
 encrypt textToEncrypt encryptionKey = do
 	let encryptInt = map ord textToEncrypt
 	let applyKey = map (+encryptionKey) encryptInt
 	let encryptedMessage = map chr applyKey
-	return encryptedMessage
+	return encryptedMessage!!0
 
-decrypt :: String -> Int -> [String]
+decrypt :: String -> Int -> String
 decrypt textToDecrypt decryptionKey = do
 	let decryptInt = map ord textToDecrypt
 	let applyKey = map (+(-decryptionKey)) decryptInt
 	let decryptedMessage = map chr applyKey
-	return decryptedMessage
+	return decryptedMessage!!0
 
 
 generateKey :: IO Int
