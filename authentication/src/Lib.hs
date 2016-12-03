@@ -65,6 +65,11 @@ main = do
 	something <- generateKey
 	let temp = encrypt textFile something
 	print(temp)
+	
+	let varaib = temp!!0
+
+	let temporary = decrypt varaib something
+	print(temporary)
 
 	let fileToInt = map ord textFile
 	--print(fileToInt)
@@ -89,11 +94,18 @@ main = do
 	print(something)
 
 encrypt :: String -> Int -> [String]
-encrypt textToEncrypt param = do
+encrypt textToEncrypt encryptionKey = do
 	let encryptInt = map ord textToEncrypt
-	let applyKey = map (+param) encryptInt
+	let applyKey = map (+encryptionKey) encryptInt
 	let encryptedMessage = map chr applyKey
 	return encryptedMessage
+
+decrypt :: String -> Int -> [String]
+decrypt textToDecrypt decryptionKey = do
+	let decryptInt = map ord textToDecrypt
+	let applyKey = map (+(-decryptionKey)) decryptInt
+	let decryptedMessage = map chr applyKey
+	return decryptedMessage
 
 
 generateKey :: IO Int
