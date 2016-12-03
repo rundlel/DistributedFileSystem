@@ -21,6 +21,13 @@
   (major1) == 4 && (major2) <  9 || \
   (major1) == 4 && (major2) == 9 && (minor) <= 0)
 
+/* package mtl-2.2.1 */
+#define VERSION_mtl "2.2.1"
+#define MIN_VERSION_mtl(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  2 || \
+  (major1) == 2 && (major2) == 2 && (minor) <= 1)
+
 /* package servant-server-0.8.1 */
 #define VERSION_servant_server "0.8.1"
 #define MIN_VERSION_servant_server(major1,major2,minor) (\
@@ -91,7 +98,7 @@
   (major1) == 0 && (major2) <  28 || \
   (major1) == 0 && (major2) == 28 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "authentication-0.1.0.0-Jy4JAW6J6uq6YY5W8MyJWl"
+#define CURRENT_COMPONENT_ID "authentication-0.1.0.0-8onSPAAbPIAQ2kKTAecla"
 
-#define CURRENT_PACKAGE_KEY "authentication-0.1.0.0-Jy4JAW6J6uq6YY5W8MyJWl"
+#define CURRENT_PACKAGE_KEY "authentication-0.1.0.0-8onSPAAbPIAQ2kKTAecla"
 

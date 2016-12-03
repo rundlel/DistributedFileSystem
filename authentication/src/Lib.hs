@@ -11,6 +11,10 @@ import Data.Char
 import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
+import System.IO
+import GHC.Generics
+import Control.Monad.Trans (liftIO)
+
 
 data Token = Token
 	{ key :: Key
@@ -35,18 +39,43 @@ type API = "users" :> Get '[JSON] [User]
 main = do 
 	let s = "sample string"
 	let x = map ord s
-	print (s)
-	print (x)
+	--print (s)
+	--print (x)
 	let z = map (+4) x
-	print (z)
+	--print (z)
 	let y = map chr z
-	print (y)
+	--print (y)
 	let a = map ord y
 	let b = map (+(-4)) a
-	print (b)
+	--print (b)
 	let c = map chr b
-	print (c)
+	--print (c)
 
+	--verify username/password with database
+	--give them an encrypted token
+	--token has metadata and a key
+	--metadata encrypted with key1
+	--key1 encrypted with key2
+	handle <- openFile "text.txt" ReadMode
+	textFile <- hGetContents handle
+	putStr textFile
+
+	let fileToInt = map ord textFile
+	--print(fileToInt)
+
+	let encryptFile = map (+5) fileToInt
+	--print (encryptFile) 
+
+	let encryptedText = map chr encryptFile
+	putStrLn(encryptedText)
+
+	-- let encryptedTextToInt = map ord encryptedText
+
+	let decryptText = map (+(-5)) encryptFile
+	--print(decryptText)
+
+	let decryptedMessage = map chr decryptText
+	putStrLn(decryptedMessage)
 
 startApp :: IO ()
 startApp = run 8080 app
