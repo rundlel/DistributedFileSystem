@@ -37,6 +37,15 @@ main = do
 	let x = map ord s
 	print (s)
 	print (x)
+	let z = map (+4) x
+	print (z)
+	let y = map chr z
+	print (y)
+	let a = map ord y
+	let b = map (+(-4)) a
+	print (b)
+	let c = map chr b
+	print (c)
 
 
 startApp :: IO ()

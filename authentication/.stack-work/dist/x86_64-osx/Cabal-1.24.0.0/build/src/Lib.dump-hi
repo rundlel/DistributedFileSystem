@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-12-03 15:08:40.459053 UTC
+2016-12-03 15:23:28.441917 UTC
 
 interface authentication-0.1.0.0-Jy4JAW6J6uq6YY5W8MyJWl:Lib 8001
-  interface hash: 6ce51356d693928007f090f60035311a
-  ABI hash: 8c16901c1b6675344dcba45c00a73f87
+  interface hash: e3816c804ab17837d60fe84cafd03535
+  ABI hash: 16a40a271b144f9a287fda63fd844520
   export-list hash: 3a5b7b9f3f145eb2a4b183f0ab30779d
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: e8266cae4bd0841f3d456b79c41be9b1
@@ -151,6 +151,8 @@ import  -/  base-4.9.0.0:Data.Monoid 1efae021212a10c79fd75960dc0a1d99
 import  -/  base-4.9.0.0:Data.OldList 0058409f994fb13ae0616e3f1e5b4dae
 import  -/  base-4.9.0.0:Data.Proxy aa86c72628cf3b1ceb0816ca84687d80
 import  -/  base-4.9.0.0:GHC.Base 8ed3be81c0707b322f975a84ae1bb816
+import  -/  base-4.9.0.0:GHC.Char 3824744793840b1b7a48109a01ef7f24
+import  -/  base-4.9.0.0:GHC.Num 48f506a8f4ecf06285d0a0706594dcc0
 import  -/  base-4.9.0.0:GHC.Read 817c914615ac8e308afc0c675fb3f671
 import  -/  base-4.9.0.0:GHC.Show 952347a6ab730bcb25c0854d8bc6ca51
 import  -/  base-4.9.0.0:Prelude b9bddb97799837fe67a8d00939a5b6c3
@@ -1385,12 +1387,12 @@ b10fde14afe3a57852aff371035177b9
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Lib.Token) ->
                  case ds of wild { Lib.Token ds1 ds2 -> ds2 }) -}
-706eeee2397b2ee8b4f2a32ba3b7956c
+bc874478b50ed1fe1dea7d4cff3088ec
   startApp :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-2457d5c72244f29fb6e19bb3549f51ba
+3314f9d204cc2d2681619063d2f3074f
   startApp1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -1492,7 +1494,7 @@ dceed95a2b199204c148fe83954c4ec8
 a9e7c6729e4a0a6116700b4f49dc8ddd
   startApp19 :: GHC.Types.Int
   {- HasNoCafRefs, Unfolding: (GHC.Types.I# 1#) -}
-b47f177d53e9c2f5ccc88e8cacc4c013
+581b7736c8c1986e61beebb1d51b0e28
   startApp2 :: Network.Wai.Application
   {- Arity: 2,
      Unfolding: (Servant.Server.Internal.RoutingApplication.toApplication
@@ -1537,7 +1539,7 @@ b57ff451dbc563c3caef4d1a00fcba01
 7b7a6606ab183c85e0b329de94de8e05
   startApp21 :: GHC.Types.Int
   {- HasNoCafRefs, Unfolding: (GHC.Types.I# 8080#) -}
-c6dd531a372d2dfb5b63857577f892b6
+015124f99629e6cd359ed76c8f1df8ed
   startApp3 ::
     Network.Wai.Internal.Request
     -> (Servant.Server.Internal.RoutingApplication.RouteResult
@@ -1679,10 +1681,9 @@ d20d4ab9fbd17bd3438abae8cf84fd0d
                    @ Servant.Server.Internal.ServantErr.ServantErr
                    @ [Lib.User]
                    Lib.startApp10) -}
-3e100fc28131a40b962dd9b5f80ddf9a
+01692d437d350d223916635f630b8e9d
   startApp_r :: Servant.Server.Internal.Router.Router ()
-  {- Strictness: m1,
-     Unfolding: (Servant.Server.Internal.Router.StaticRouter
+  {- Unfolding: (Servant.Server.Internal.Router.StaticRouter
                    @ ()
                    @ Servant.Server.Internal.RoutingApplication.RoutingApplication
                    Lib.startApp4
