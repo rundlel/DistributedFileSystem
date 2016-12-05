@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-11-29 19:45:34.255165 UTC
+2016-12-05 18:43:54.142263 UTC
 
 interface main@main:Main 8001
-  interface hash: 9fe3f479aa0ad005e5ac59e903dfd322
-  ABI hash: bf6335c3c00ac7524b110bddfde987f5
-  export-list hash: 5dc3bef41cef18a4e240c5cbccf69022
+  interface hash: 83d94aff5092f0513d3d74e083a2e9a7
+  ABI hash: a4f11c955827b323c4e255fb0ded8029
+  export-list hash: e300d70571115e617ee05e2a8f7a72ec
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: b7b9b7313dfff68b01dcc20f7162a7f6
   sig of: Nothing
@@ -30,6 +30,7 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       blaze-html-0.8.1.2@blaze-html-0.8.1.2-EQcMcRytfAYLVlu6sIj0XG
                       blaze-markup-0.7.1.0@blaze-markup-0.7.1.0-CgEg2S1gRb62uLfN2SPOVT
                       bson-0.3.2.3@bson-0.3.2.3-8sf5oNedrYP7XAkMjn5uB7
+                      bson-generic-0.0.8@bson-generic-0.0.8-D4Xj6r1cS5f3oTxLuRXw8u
                       byteable-0.1.1@byteable-0.1.1-15aIBCArSOBEnGxArzrDTM
                       byteorder-1.0.4@byteorder-1.0.4-BbL4c17EpZrL9PcZm0xys9
                       bytestring-0.10.8.1@bytestring-0.10.8.1
@@ -43,7 +44,7 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       cryptohash-0.11.9@cryptohash-0.11.9-9KNu0EEbreBFrmNJAeHgYz
                       cryptonite-0.19@cryptonite-0.19-G9PYO4oOEqhDTta2u9rAaU
                       data-binary-ieee754-0.4.4@data-binary-ieee754-0.4.4-F1HjhwdV1xx5grS0eMjeg2
-                      database-0.1.0.0@database-0.1.0.0-B4FfGLtQPKjA2yHhTD6ksb
+                      database-0.1.0.0@database-0.1.0.0-8GxHXWs1ARBIst34J38jD
                       deepseq-1.4.2.0@deepseq-1.4.2.0 directory-1.2.6.2@directory-1.2.6.2
                       dlist-0.8.0.2@dlist-0.8.0.2-GWAMmbX9rLg3tqrbOizHGv
                       double-conversion-2.0.1.0@double-conversion-2.0.1.0-JNbgVaWdXMzG3sbUcj3MFk
@@ -107,7 +108,9 @@ orphans: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov:Control.
          attoparsec-0.13.1.0@attoparsec-0.13.1.0-2AyzLuPV4T95RcYDl03Ghe:Data.Attoparsec.Text.Internal
          base-4.9.0.0:GHC.Base base-4.9.0.0:GHC.Float
          binary-0.8.3.0@binary-0.8.3.0:Data.Binary.Generic
+         bson-generic-0.0.8@bson-generic-0.0.8-D4Xj6r1cS5f3oTxLuRXw8u:Data.Bson.Generic
          bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Builder
+         database-0.1.0.0@database-0.1.0.0-8GxHXWs1ARBIst34J38jD:Lib
          hashable-1.2.4.0@hashable-1.2.4.0-Ctl752zbguF6QanxurLOm2:Data.Hashable.Generic
          mongoDB-2.1.1.1@mongoDB-2.1.1.1-87bgdTO2NpSHGlxCC0IX9r:Database.MongoDB.Internal.Util
          network-2.6.3.1@network-2.6.3.1-G4Up1CPKbp7DeFsnywOnGG:Network.Socket
@@ -131,12 +134,13 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-2AyzLuPV4T95RcY
                          base-4.9.0.0:Data.Void base-4.9.0.0:GHC.Exts
                          base-4.9.0.0:GHC.Generics base-4.9.0.0:GHC.IO.Exception
                          base-4.9.0.0:GHC.TypeLits
+                         bson-generic-0.0.8@bson-generic-0.0.8-D4Xj6r1cS5f3oTxLuRXw8u:Data.Bson.Generic
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntMap.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntSet.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Sequence
                          containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
-                         database-0.1.0.0@database-0.1.0.0-B4FfGLtQPKjA2yHhTD6ksb:Lib
+                         database-0.1.0.0@database-0.1.0.0-8GxHXWs1ARBIst34J38jD:Lib
                          dlist-0.8.0.2@dlist-0.8.0.2-GWAMmbX9rLg3tqrbOizHGv:Data.DList
                          ghc-boot-th-8.0.1@ghc-boot-th-8.0.1:GHC.LanguageExtensions.Type
                          iproute-1.7.1@iproute-1.7.1-9hsGfRvggCmFA0ueZi5Sd9:Data.IP.Addr
@@ -164,7 +168,7 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-2AyzLuPV4T95RcY
                          vector-0.11.0.0@vector-0.11.0.0-6uB77qGCxR6GPLxI2sqsX3:Data.Vector.Unboxed.Base
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
 import  -/  base-4.9.0.0:Prelude b9bddb97799837fe67a8d00939a5b6c3
-import  -/  database-0.1.0.0@database-0.1.0.0-B4FfGLtQPKjA2yHhTD6ksb:Lib aef1722b0a217e891a26f1822b90ae9d
+import  -/  database-0.1.0.0@database-0.1.0.0-8GxHXWs1ARBIst34J38jD:Lib 265331eca5df6ac27e3828ea4e67c1ae
 import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
 d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule :: GHC.Types.Module
@@ -178,12 +182,12 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-84e39e81e98056a0b6d18bf96dbadbbd
+32ec8f62bcee23feae2bb292fa2d2f7a
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-6e4c25a2126b7155f46cd669a50f8e55
+e7142033ec9b52a50b16e55850407357
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)

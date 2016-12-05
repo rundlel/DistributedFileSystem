@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/Users/laurarundle/Desktop/distro/database/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/bin"
-libdir     = "/Users/laurarundle/Desktop/distro/database/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/lib/x86_64-osx-ghc-8.0.1/database-0.1.0.0-B4FfGLtQPKjA2yHhTD6ksb"
+libdir     = "/Users/laurarundle/Desktop/distro/database/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/lib/x86_64-osx-ghc-8.0.1/database-0.1.0.0-8GxHXWs1ARBIst34J38jD"
 datadir    = "/Users/laurarundle/Desktop/distro/database/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/share/x86_64-osx-ghc-8.0.1/database-0.1.0.0"
 libexecdir = "/Users/laurarundle/Desktop/distro/database/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/libexec"
 sysconfdir = "/Users/laurarundle/Desktop/distro/database/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/etc"

@@ -1,0 +1,14 @@
+Preprocessing library database-0.1.0.0...
+[1 of 1] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/Lib.o )
+
+src/Lib.hs:34:2: warning: [-Wtabs]
+    Tab character found here, and in 21 further locations.
+    Please use spaces instead.
+Preprocessing executable 'database-exe' for database-0.1.0.0...
+[1 of 1] Compiling Main             ( app/Main.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/database-exe/database-exe-tmp/Main.o ) [Lib changed]
+Linking .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/database-exe/database-exe ...
+Installing library in
+/Users/laurarundle/Desktop/distro/database/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/lib/x86_64-osx-ghc-8.0.1/database-0.1.0.0-8GxHXWs1ARBIst34J38jD
+Installing executable(s) in
+/Users/laurarundle/Desktop/distro/database/.stack-work/install/x86_64-osx/lts-7.11/8.0.1/bin
+Registering database-0.1.0.0...

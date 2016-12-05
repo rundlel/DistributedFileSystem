@@ -1,9 +1,13 @@
-{-# LANGUAGE DataKinds       #-}
-{-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE TypeOperators   #-}
-{-# LANGUAGE DeriveGeneric   #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DataKinds            #-}
+{-# LANGUAGE TemplateHaskell      #-}
+{-# LANGUAGE TypeOperators        #-}
+{-# LANGUAGE DeriveGeneric        #-}
+{-# LANGUAGE OverloadedStrings    #-}
 {-# LANGUAGE ExtendedDefaultRules #-}
+{-# LANGUAGE DeriveAnyClass       #-}
+{-# LANGUAGE StandaloneDeriving   #-}
+{-# LANGUAGE FlexibleInstances    #-}
+{-# LANGUAGE TypeSynonymInstances #-}
 
 module Lib
     ( startApp
@@ -30,20 +34,21 @@ data Message = Message
  	{ message :: String }
  	deriving (Generic)
 
+data ResponseData = ResponseData
+	{ responseData :: String }
+	deriving(Generic)
 
 data SendFile = SendFile
-	{ sendFile :: String }
-	deriving (Generic)
+	{ fileContents :: String }
+	deriving (Generic, FromBSON, ToBSON, FromJSON, ToJSON)
 
-instance FromJSON Message
-instance ToJSON Message
+instance FromJSON ResponseData
+instance ToJSON ResponseData
 
-deriving instance ToBSON
-deriving instance FromBSON
+deriving instance ToBSON String
+deriving instance FromBSON String
 
-type API = "message" :> Capture "in" String :> Get '[JSON] Message 
-		-- "file" :> Get 
-		-- :<|> 
+type API = "postFile" :> ReqBody '[JSON] SendFile :> Post '[JSON] ResponseData
 
 
 startApp :: IO ()
@@ -68,13 +73,12 @@ api :: Proxy API
 api = Proxy
 
 server :: Server API
-server = echoMessage
-	-- fileReader
+server = postFile
 
-echoMessage :: Server API
-echoMessage = sendEcho where
-	sendEcho :: String -> Handler Message
- 	sendEcho s = return (Message (map toUpper s))
+-- echoMessage :: Server API
+-- echoMessage = sendEcho where
+-- 	sendEcho :: String -> Handler Message
+--  	sendEcho s = return (Message (map toUpper s))
 
 startMongoDB functionToRun = do
 	pipe <- connect (host "127.0.0.1")
@@ -86,14 +90,18 @@ printDBCollecs = startMongoDB allCollections
 
 printDBFiles = startMongoDB $ find (select [] "Files") >>= rest
 
+insertFileToDatabase :: Document -> IO()
+insertFileToDatabase docToInsert = startMongoDB $ insert "Files" docToInsert
 
-postFile :: IO()
-postFile = do
-	handle <- openFile "text.txt" ReadMode
-	contents <- hGetContents handle
-	let textFileContent = words contents
-	startMongoDB $ insert "Files" $ toBSON textFileContent
-	hClose handle
+postFile :: SendFile -> Handler ResponseData
+postFile doc = liftIO $ do
+	x <- insertFileToDatabase $ (toBSON $ doc)
+	return $ ResponseData (fileContents doc)
+	--handle <- openFile "text.txt" ReadMode
+	--contents <- hGetContents handle
+	--let textFileContent = words contents
+	--startMongoDB $ insert "Files" $ toBSON textFileContent
+	--hClose handle
 
 
 -- startApp :: IO ()
