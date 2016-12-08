@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-12-08 15:50:32.456018 UTC
+2016-12-08 18:17:49.959163 UTC
 
 interface main@main:Main 8001
-  interface hash: 28f779b247573eb98e1d703a52bd06fe
-  ABI hash: c09c120cb24bb1af051e937700c0d44c
+  interface hash: 20f65148cf07c2b9eda64cdae8d55be3
+  ABI hash: 7a302020e64151839c9a80220ece6613
   export-list hash: fe85665bf79757253eb74922b5e66d4a
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: c2275ef3b12a069999af1223d97c2cea
@@ -167,7 +167,7 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-2AyzLuPV4T95RcY
                          vector-0.11.0.0@vector-0.11.0.0-6uB77qGCxR6GPLxI2sqsX3:Data.Vector.Unboxed
                          vector-0.11.0.0@vector-0.11.0.0-6uB77qGCxR6GPLxI2sqsX3:Data.Vector.Unboxed.Base
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
-import  -/  authentication-0.1.0.0@authentication-0.1.0.0-pLkBxKaxy3BrpSvBlq8Gd:Lib 63372af124b4c207214b8a31fc7d30dd
+import  -/  authentication-0.1.0.0@authentication-0.1.0.0-pLkBxKaxy3BrpSvBlq8Gd:Lib 94f549261289c8d396ff7efe4c2b9ea2
 import  -/  base-4.9.0.0:Prelude b9bddb97799837fe67a8d00939a5b6c3
 import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
 d6831ef04cb9301b090dfae6f7bb7ec7
@@ -182,12 +182,12 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-3ccd06bceaeef3b12554b3db2d1b88db
+f502dd3d7f8728b80fcd6bede37537cc
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-4034c644b8cc4a5b9d82c35743ae2ccc
+02a69c9e43aa4c5f2af8780b16e1acea
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)

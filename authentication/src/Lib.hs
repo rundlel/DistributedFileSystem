@@ -59,6 +59,7 @@ deriving instance FromBSON String
 
 
 type API = "insertUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
+		:<|> "findUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
 
 
 main = do 
@@ -87,9 +88,8 @@ decrypt textToDecrypt decryptionKey = do
 	return decryptedMessage!!0
 
 
-generateKey :: IO Int
+generateKey :: IO Int 
 generateKey = randomRIO(1,25)
-
 
 
 startApp :: IO ()
@@ -103,6 +103,7 @@ api = Proxy
 
 server :: Server API
 server = insertUser
+	:<|> findUser
 
 startMongoDB functionToRun = do
 	pipe <- connect (host "127.0.0.1")
@@ -110,21 +111,42 @@ startMongoDB functionToRun = do
 	print e
 	close pipe
 
+localKey :: Key
+localKey = Key 7
+
+findUser :: User -> Handler ResponseData
+findUser userData = liftIO $ do
+	let nameToFind = username userData
+	let temp = password userData
+	let passToFind = encrypt temp (key1 localKey)
+	x <- startMongoDB $ findOne $ select ["username" =: nameToFind, "password" =: passToFind] "Users"
+	return $ ResponseData (username userData)
 
 insertUserToDatabase :: Document -> IO()
 insertUserToDatabase userToInsert = startMongoDB $ insert "Users" userToInsert
 
 insertUser :: User -> Handler ResponseData
 insertUser userData = liftIO $ do
-	encryptionKey <- generateKey
+	--encryptionKey <- generateKey
 	let pass = password userData
 	let name = username userData
-	let encryptedPass = encrypt pass encryptionKey
+	let encryptedPass = encrypt pass (key1 localKey)
 	print(encryptedPass)
 	let tempUser = User name encryptedPass
 
 	x <- insertUserToDatabase $ (toBSON $ tempUser)
 	return $ ResponseData (username tempUser)
+
+
+-- localKey :: Key
+-- localKey = do
+-- 	localKeyVariable <- generateKey
+-- 	return $ Key localKeyVariable
+
+
+-- Haskell hard to maintain state so would have to use an additional database in order to ensure the correct key was used for decryption
+
+
 
 -- users :: [User]
 -- users = [ User 1 "Isaac" "Newton"
