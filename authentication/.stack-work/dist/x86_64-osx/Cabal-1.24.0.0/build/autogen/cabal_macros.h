@@ -21,6 +21,20 @@
   (major1) == 4 && (major2) <  9 || \
   (major1) == 4 && (major2) == 9 && (minor) <= 0)
 
+/* package bson-generic-0.0.8 */
+#define VERSION_bson_generic "0.0.8"
+#define MIN_VERSION_bson_generic(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  0 || \
+  (major1) == 0 && (major2) == 0 && (minor) <= 8)
+
+/* package mongoDB-2.1.1.1 */
+#define VERSION_mongoDB "2.1.1.1"
+#define MIN_VERSION_mongoDB(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  1 || \
+  (major1) == 2 && (major2) == 1 && (minor) <= 1)
+
 /* package mtl-2.2.1 */
 #define VERSION_mtl "2.2.1"
 #define MIN_VERSION_mtl(major1,major2,minor) (\
@@ -105,7 +119,7 @@
   (major1) == 0 && (major2) <  28 || \
   (major1) == 0 && (major2) == 28 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "authentication-0.1.0.0-A9dpLDu4jGY6DhzSz2nwZ1"
+#define CURRENT_COMPONENT_ID "authentication-0.1.0.0-pLkBxKaxy3BrpSvBlq8Gd"
 
-#define CURRENT_PACKAGE_KEY "authentication-0.1.0.0-A9dpLDu4jGY6DhzSz2nwZ1"
+#define CURRENT_PACKAGE_KEY "authentication-0.1.0.0-pLkBxKaxy3BrpSvBlq8Gd"
 

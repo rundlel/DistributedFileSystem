@@ -1,6 +1,14 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators   #-}
+{-# LANGUAGE DeriveGeneric        #-}
+{-# LANGUAGE OverloadedStrings    #-}
+{-# LANGUAGE ExtendedDefaultRules #-}
+{-# LANGUAGE DeriveAnyClass       #-}
+{-# LANGUAGE StandaloneDeriving   #-}
+{-# LANGUAGE FlexibleInstances    #-}
+{-# LANGUAGE TypeSynonymInstances #-}
+
 module Lib
     ( startApp
     ) where
@@ -15,6 +23,13 @@ import System.IO
 import GHC.Generics
 import Control.Monad.Trans (liftIO)
 import System.Random
+import Database.MongoDB (Action, Document, Value,
+                                        access, allCollections, close, connect, delete,
+                                        exclude, find, insert, findOne, host, insertMany,
+                                        master, project, rest, select, sort,
+                                        (=:))
+import Data.Bson.Generic
+import Control.Concurrent.MVar
 
 
 data Token = Token
@@ -27,14 +42,23 @@ data Key = Key
 	} deriving(Eq, Show, Read)
 
 data User = User
-  { userId        :: Int
-  , userFirstName :: String
-  , userLastName  :: String
-  } deriving (Eq, Show)
+	{ username :: String
+	, password :: String
+	} deriving (Generic, FromBSON, ToBSON, FromJSON, ToJSON)
 
-$(deriveJSON defaultOptions ''User)
+data ResponseData = ResponseData
+	{ responseData :: String }
+	deriving(Generic)
 
-type API = "users" :> Get '[JSON] [User]
+instance FromJSON ResponseData
+instance ToJSON ResponseData
+
+deriving instance ToBSON String
+deriving instance FromBSON String
+
+
+
+type API = "insertUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
 
 
 main = do 
@@ -78,9 +102,31 @@ api :: Proxy API
 api = Proxy
 
 server :: Server API
-server = return users
+server = insertUser
 
-users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
-        ]
+startMongoDB functionToRun = do
+	pipe <- connect (host "127.0.0.1")
+	e <- access pipe master "LFSdatabase" functionToRun
+	print e
+	close pipe
+
+
+insertUserToDatabase :: Document -> IO()
+insertUserToDatabase userToInsert = startMongoDB $ insert "Users" userToInsert
+
+insertUser :: User -> Handler ResponseData
+insertUser userData = liftIO $ do
+	encryptionKey <- generateKey
+	let pass = password userData
+	let name = username userData
+	let encryptedPass = encrypt pass encryptionKey
+	print(encryptedPass)
+	let tempUser = User name encryptedPass
+
+	x <- insertUserToDatabase $ (toBSON $ tempUser)
+	return $ ResponseData (username tempUser)
+
+-- users :: [User]
+-- users = [ User 1 "Isaac" "Newton"
+--         , User 2 "Albert" "Einstein"
+--         ]

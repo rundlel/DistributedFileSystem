@@ -1,0 +1,13 @@
+Configuring use-haskell-0.1.0.0...
+Preprocessing library use-haskell-0.1.0.0...
+[1 of 2] Compiling RestClient       ( src/RestClient.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.0.0/build/RestClient.o )
+[2 of 2] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.0.0/build/Lib.o )
+
+src/Lib.hs:71:10: error:
+    • Couldn't match type ‘IO ()’
+                     with ‘[Char]
+                           -> Control.Monad.Trans.Except.ExceptT ServantErr IO Message’
+      Expected type: Server API
+        Actual type: IO ()
+    • In the expression: postFile
+      In an equation for ‘server’: server = postFile
