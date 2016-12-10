@@ -59,7 +59,10 @@ deriving instance FromBSON String
 
 
 type API = "insertUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
-		:<|> "findUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
+		:<|> "returnToken" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
+		
+		-- :<|> "findUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
+
 
 
 main = do 
@@ -103,7 +106,9 @@ api = Proxy
 
 server :: Server API
 server = insertUser
-	:<|> findUser
+	:<|> returnToken
+	-- :<|> findUser
+
 
 startMongoDB functionToRun = do
 	pipe <- connect (host "127.0.0.1")
@@ -114,13 +119,24 @@ startMongoDB functionToRun = do
 localKey :: Key
 localKey = Key 7
 
-findUser :: User -> Handler ResponseData
-findUser userData = liftIO $ do
+token1 :: Token
+token1 = Token localKey "READ WRITE"
+
+returnToken :: User -> Handler ResponseData
+returnToken userData = liftIO $ do
 	let nameToFind = username userData
 	let temp = password userData
 	let passToFind = encrypt temp (key1 localKey)
 	x <- startMongoDB $ findOne $ select ["username" =: nameToFind, "password" =: passToFind] "Users"
-	return $ ResponseData (username userData)
+	return $ ResponseData (metadata token1)
+
+-- findUser :: User -> Handler ResponseData
+-- findUser userData = liftIO $ do
+-- 	let nameToFind = username userData
+-- 	let temp = password userData
+-- 	let passToFind = encrypt temp (key1 localKey)
+-- 	x <- startMongoDB $ findOne $ select ["username" =: nameToFind, "password" =: passToFind] "Users"
+-- 	return $ ResponseData (username userData)
 
 insertUserToDatabase :: Document -> IO()
 insertUserToDatabase userToInsert = startMongoDB $ insert "Users" userToInsert
