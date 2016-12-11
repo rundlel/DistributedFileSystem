@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-12-10 18:59:08.027426 UTC
+2016-12-10 19:05:32.351141 UTC
 
 interface authentication-0.1.0.0-pLkBxKaxy3BrpSvBlq8Gd:Lib [orphan module] [family instance module] 8001
-  interface hash: c88935fb5444eb3a0cc5dbca40373023
-  ABI hash: cf26bf4a15a4571996da14199e2e2c02
+  interface hash: 3017218508386192172b74c4f344d06f
+  ABI hash: 2f266b31e6510c547b21b1da782aa0b7
   export-list hash: 0eca3b93973920e921af309b398da1a8
   orphan hash: ba6f2e63cf6591debc2c7b66d341b4b1
   flag hash: d6ea2612c12b765072087fa5cbfa32de
@@ -5098,12 +5098,12 @@ c677707822acad0ada3a4d9887943064
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Lib.ResponseData) ->
                  case ds of wild { Lib.ResponseData ds1 -> ds1 }) -}
-6203efa894a2858fa8f1f44ce03b16f2
+7c76a4eebc2ab36328ea05f4f265886b
   startApp :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-a59e10b1f4a7d10ba6c13a5e67a88ec7
+57d60a071bffcb1f2b6ea730f720f2d4
   startApp1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -5163,7 +5163,7 @@ a59e10b1f4a7d10ba6c13a5e67a88ec7
                    (GHC.Base.Nothing @ GHC.Types.Int)
                    Lib.startApp2
                    eta1) -}
-aa02c8484a078d4c8411f020585818f4
+5934343e471d9e9f75ecaf81d6a164bd
   startApp10 ::
     Lib.User
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -5250,8 +5250,13 @@ aa02c8484a078d4c8411f020585818f4
                                   <GHC.Types.IO>_R
                                   <GHC.Base.Maybe Data.Bson.Document>_N))
                         s of ds1 { (#,#) ipv ipv1 ->
-                 (# ipv, Lib.startApp11 #) }) -}
-7b28dd330a633f671a7b9df503881ef9
+                 case GHC.IO.Handle.Text.hPutStr2
+                        GHC.IO.Handle.FD.stdout
+                        (GHC.Show.$fShow()_$cshow ipv1)
+                        GHC.Types.True
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 (# ipv2, Lib.startApp11 #) } }) -}
+ffc6f862cfa24efbbfb8c65259e84bfa
   startApp11 ::
     Data.Either.Either
       Servant.Server.Internal.ServantErr.ServantErr Lib.ResponseData
@@ -5259,11 +5264,11 @@ aa02c8484a078d4c8411f020585818f4
                    @ Servant.Server.Internal.ServantErr.ServantErr
                    @ Lib.ResponseData
                    Lib.startApp12) -}
-0cb2c8dac109f91d234c93e89e0b7fc9
+3dadf2c4b87a4005becdce078f7e6543
   startApp12 :: Lib.ResponseData
-  {- Strictness: m, Unfolding: (Lib.ResponseData Lib.startApp13) -}
-c91da54638b0f3bc9ff2fad9d315e055
-  startApp13 :: GHC.Base.String
+  {- Unfolding: (Lib.ResponseData Lib.startApp13) -}
+e67778a97f3b6ee68b49526f9c6afe2f
+  startApp13 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "READ WRITE"#) -}
 8ef12d116304553599ab8bd4a646fe7d
   startApp14 :: Database.MongoDB.Query.Collection
@@ -5326,7 +5331,7 @@ c91da54638b0f3bc9ff2fad9d315e055
 638e8132f8664ed24d07d0d20bc3c437
   startApp19 :: Database.MongoDB.Query.Database
   {- Unfolding: (Data.Text.Show.unpackCString# "LFSdatabase"#) -}
-379d75bac4b67a59df936a2adb59446b
+820d7aaebbde32e0e35bffd62ca9fc1d
   startApp2 :: Network.Wai.Application
   {- Arity: 2,
      Unfolding: (Servant.Server.Internal.RoutingApplication.toApplication
@@ -5725,7 +5730,7 @@ ed88f96b0af3c3ee18a5728c6856f42a
 58354e1b3e380f17ada9e262a7009cec
   startApp28 :: GHC.Types.Int
   {- HasNoCafRefs, Unfolding: (GHC.Types.I# 8080#) -}
-a406ac45591295873c209522b7a01441
+db1202e0a9a433a16d5d471b118c4cb1
   startApp3 ::
     Network.Wai.Internal.Request
     -> (Servant.Server.Internal.RoutingApplication.RouteResult
@@ -5743,7 +5748,7 @@ a406ac45591295873c209522b7a01441
                    GHC.Tuple.()
                    eta
                    eta1) -}
-8dd882f1ffaccfc6ff1e9f6cc78f21d6
+37d72a561a6c5806838233a943fa3424
   startApp4 ::
     Servant.Server.Internal.Router.Router'
       () Servant.Server.Internal.RoutingApplication.RoutingApplication
@@ -5754,7 +5759,7 @@ a406ac45591295873c209522b7a01441
                    (GHC.Types.[]
                       @ (()
                          -> Servant.Server.Internal.RoutingApplication.RoutingApplication))) -}
-e643c0d33c87f3216eaa0796b9e51c08
+d0c270b7687cca3c4df5a108fe29b0e9
   startApp5 ::
     Data.Map.Base.Map
       Data.Text.Internal.Text
@@ -5781,7 +5786,7 @@ e643c0d33c87f3216eaa0796b9e51c08
                       @ (Servant.Server.Internal.Router.Router'
                            ()
                            Servant.Server.Internal.RoutingApplication.RoutingApplication)) } }) -}
-cc86b28c5f6ea0538148e38a3a2f6d4c
+89be9a0d049e99c32fe315c1f854e125
   startApp6 :: Servant.Server.Internal.Router.Router ()
   {- Unfolding: (Servant.Server.Internal.$w$croute2
                    @ *
@@ -5833,7 +5838,7 @@ cc86b28c5f6ea0538148e38a3a2f6d4c
                                 <Control.Monad.Trans.Except.ExceptT
                                    Servant.Server.Internal.ServantErr.ServantErr
                                    GHC.Types.IO>_N)))_R) -}
-895d6758c681be01861858acf70fea84
+3bedf1e5b4409c41d5208e1cbf97b5cd
   startApp7 ::
     Servant.Server.Internal.RoutingApplication.Delayed
       ()
@@ -5894,7 +5899,7 @@ cc86b28c5f6ea0538148e38a3a2f6d4c
                         (Sym (Servant.Server.Internal.RoutingApplication.N:DelayedIO[0]
                                   <()>_R)))
                    Lib.startApp8) -}
-83724f1f29ec1f9a0547db80eb861e25
+314e1ef95f97090b81bc796fffe9068e
   startApp8 ::
     ()
     -> ()
@@ -5914,7 +5919,7 @@ cc86b28c5f6ea0538148e38a3a2f6d4c
                    (b1 :: ())
                    (req :: Network.Wai.Internal.Request) ->
                  Lib.startApp9) -}
-d1a7507b449748b304a041ebc9838c93
+0861f36469d21f95f9bc3ea3a243c92d
   startApp9 ::
     Servant.Server.Internal.RoutingApplication.RouteResult
       (Servant.Server.Internal.Server
@@ -5979,7 +5984,7 @@ d1a7507b449748b304a041ebc9838c93
                                             <Control.Monad.Trans.Except.ExceptT
                                                Servant.Server.Internal.ServantErr.ServantErr
                                                GHC.Types.IO>_N)))))) -}
-2cc9d2b98060f6c9a21bec8814ea0a96
+6a7edd68cf271f6d851c27c2142c05cc
   startApp_r :: Servant.Server.Internal.Router.Router ()
   {- Unfolding: (Servant.Server.Internal.Router.choice
                    @ ()

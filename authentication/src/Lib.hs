@@ -9,6 +9,7 @@
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
+
 module Lib
     ( startApp
     ) where
@@ -30,6 +31,7 @@ import Database.MongoDB (Action, Document, Value,
                                         (=:))
 import Data.Bson.Generic
 import Control.Concurrent.MVar
+import Data.Maybe (mapMaybe)
 
 
 data Token = Token
@@ -44,6 +46,7 @@ data Key = Key
 data User = User
 	{ username :: String
 	, password :: String
+	, permissions :: String
 	} deriving (Generic, FromBSON, ToBSON, FromJSON, ToJSON)
 
 data ResponseData = ResponseData
@@ -60,6 +63,7 @@ deriving instance FromBSON String
 
 type API = "insertUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
 		:<|> "returnToken" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
+		:<|> "generateToken" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
 		
 		-- :<|> "findUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
 
@@ -107,6 +111,7 @@ api = Proxy
 server :: Server API
 server = insertUser
 	:<|> returnToken
+	:<|> generateToken
 	-- :<|> findUser
 
 
@@ -130,6 +135,24 @@ returnToken userData = liftIO $ do
 	x <- startMongoDB $ findOne $ select ["username" =: nameToFind, "password" =: passToFind] "Users"
 	return $ ResponseData (metadata token1)
 
+generateToken :: User -> Handler ResponseData
+generateToken userData = liftIO $ do
+	let nameToFind = username userData
+	let temp = password userData
+	let passToFind = encrypt temp (key1 localKey)
+	p <- startMongoDB $ find (select ["username" =: nameToFind, "password" =: passToFind] "Users") >>= rest
+	let tempToken = Token localKey (fromBSON p)
+	return $ ResponseData (metadata tempToken)
+
+-- generateToken :: User -> Handler ResponseData
+-- generateToken userData = liftIO $ do
+-- 	let nameToFind username userData
+-- 	let temp = password userData
+-- 	let passToFind = encrypt temp (key1 localKey)
+-- 	z <- startMongoDB $ find (select ["username" =: nameToFind] "Users") >>= rest
+-- 	let tempToken = Token localKey z
+-- 	return $ ResponseData (metadata tempToken)
+
 -- findUser :: User -> Handler ResponseData
 -- findUser userData = liftIO $ do
 -- 	let nameToFind = username userData
@@ -148,7 +171,8 @@ insertUser userData = liftIO $ do
 	let name = username userData
 	let encryptedPass = encrypt pass (key1 localKey)
 	print(encryptedPass)
-	let tempUser = User name encryptedPass
+	let perm = permissions userData
+	let tempUser = User name encryptedPass perm
 
 	x <- insertUserToDatabase $ (toBSON $ tempUser)
 	return $ ResponseData (username tempUser)
