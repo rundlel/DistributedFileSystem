@@ -63,7 +63,9 @@ deriving instance FromBSON String
 
 type API = "insertUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
 		:<|> "returnToken" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
-		:<|> "generateToken" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
+		:<|> "getUserByName" :> QueryParam "search" String :> Get '[JSON] [User] 
+		
+		-- :<|> "generateToken" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
 		
 		-- :<|> "findUser" :> ReqBody '[JSON] User :> Post '[JSON] ResponseData
 
@@ -111,7 +113,8 @@ api = Proxy
 server :: Server API
 server = insertUser
 	:<|> returnToken
-	:<|> generateToken
+	:<|> getUserByName
+	-- :<|> generateToken
 	-- :<|> findUser
 
 
@@ -120,6 +123,13 @@ startMongoDB functionToRun = do
 	e <- access pipe master "LFSdatabase" functionToRun
 	print e
 	close pipe
+
+returnMongo :: Action IO a0 -> IO a0
+returnMongo functionToRun = do
+    pipe <- connect (host "127.0.0.1")
+    e <- access pipe master "LFSdatabase" functionToRun
+    close pipe
+    return e
 
 localKey :: Key
 localKey = Key 7
@@ -135,14 +145,32 @@ returnToken userData = liftIO $ do
 	x <- startMongoDB $ findOne $ select ["username" =: nameToFind, "password" =: passToFind] "Users"
 	return $ ResponseData (metadata token1)
 
+-- generateToken :: User -> Handler ResponseData
+-- generateToken userData = liftIO $ do
+-- 	let nameToFind = username userData
+-- 	let temp = password userData
+-- 	let passToFind = encrypt temp (key1 localKey)
+-- 	p <- startMongoDB $ find (select ["username" =: nameToFind, "password" =: passToFind] "Users") >>= rest
+-- 	let tempToken = Token localKey p
+-- 	return $ ResponseData (metadata tempToken)
+
 generateToken :: User -> Handler ResponseData
 generateToken userData = liftIO $ do
 	let nameToFind = username userData
 	let temp = password userData
 	let passToFind = encrypt temp (key1 localKey)
-	p <- startMongoDB $ find (select ["username" =: nameToFind, "password" =: passToFind] "Users") >>= rest
-	let tempToken = Token localKey (fromBSON p)
-	return $ ResponseData (metadata tempToken)
+	let userDoc = getUserByName nameToFind
+
+	print(userDoc)
+--	p <- startMongoDB $ findOne (select ["username" =: nameToFind, "password" =: passToFind] "Users") 
+--	let tempToken = Token localKey p
+	return $ ResponseData (username userData)
+
+
+getUserByName :: Maybe String -> Handler [User]
+getUserByName uname = liftIO $ do
+	xyz <- returnMongo $ find (select ["username" =: uname] "Users") >>= rest
+	return $ mapMaybe (\ b -> fromBSON b :: Maybe User) xyz
 
 -- generateToken :: User -> Handler ResponseData
 -- generateToken userData = liftIO $ do

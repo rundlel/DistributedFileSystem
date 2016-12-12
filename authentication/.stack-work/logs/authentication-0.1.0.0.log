@@ -1,19 +1,27 @@
 Preprocessing library authentication-0.1.0.0...
 [1 of 1] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.0.0/build/Lib.o )
 
-src/Lib.hs:144:41: error:
-    • Couldn't match type ‘Maybe a0’ with ‘[Char]’
-      Expected type: String
-        Actual type: Maybe a0
-    • In the second argument of ‘Token’, namely ‘(fromBSON p)’
-      In the expression: Token localKey (fromBSON p)
-      In an equation for ‘tempToken’:
-          tempToken = Token localKey (fromBSON p)
+src/Lib.hs:162:37: error:
+    • Couldn't match type ‘[Char]’ with ‘Maybe String’
+      Expected type: Maybe String
+        Actual type: String
+    • In the first argument of ‘getUserByName’, namely ‘nameToFind’
+      In the expression: getUserByName nameToFind
+      In an equation for ‘userDoc’: userDoc = getUserByName nameToFind
 
-src/Lib.hs:144:50: error:
-    • Couldn't match type ‘()’ with ‘[bson-0.3.2.3:Data.Bson.Field]’
-      Expected type: Document
-        Actual type: ()
-    • In the first argument of ‘fromBSON’, namely ‘p’
-      In the second argument of ‘Token’, namely ‘(fromBSON p)’
-      In the expression: Token localKey (fromBSON p)
+src/Lib.hs:164:9: error:
+    • No instance for (Show User) arising from a use of ‘print’
+    • In a stmt of a 'do' block: print (userDoc)
+      In the second argument of ‘($)’, namely
+        ‘do { let nameToFind = username userData;
+              let temp = password userData;
+              let passToFind = encrypt temp (key1 localKey);
+              let userDoc = getUserByName nameToFind;
+              .... }’
+      In the expression:
+        liftIO
+        $ do { let nameToFind = username userData;
+               let temp = password userData;
+               let passToFind = encrypt temp (key1 localKey);
+               let userDoc = getUserByName nameToFind;
+               .... }
